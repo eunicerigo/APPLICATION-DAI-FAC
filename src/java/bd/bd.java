@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import metier.ProfilSportif;
 import metier.Utilisateur;
 
 /**
@@ -310,6 +311,26 @@ public class bd {
         }
         return nb_ligne_modifie;
     }
+    
+    //remplir le profil sportif d'utilisateur
+    public void remplirProfilSportif(Utilisateur u1, ProfilSportif ps1) throws SQLException{
+        //espace de requêtes
+        Statement st;
+        
+        //requete sql
+        String sql = "Insert into PROFILSPORTIF (CODEU,CODE,DATEPS)"+"VALUES ('"+u1.getCodeu()+"',"+ps1.getCodePs()+"',"
+                        +"";
+        
+        //ouverture de l'espace de requetes
+        st = cx.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        
+        
+        
+        
+    }
+    
+    
 
     //Programme de test de la connexion à la bd
     public static void main(String[] args) throws SQLException {
