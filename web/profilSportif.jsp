@@ -1,8 +1,15 @@
 <%-- 
-    Document   : inscription
-    Created on : 27 mars 2018, 13:17:03
+    Document   : profilSportif
+    Created on : 29 mars 2018, 14:48:19
     Author     : FLEXICSSS
 --%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+
+
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,7 +19,7 @@
         <head>
             <meta http-equiv="Content-Type"
                   content="text/html; charset=UTF-8">
-            <title>Inscription client</title>
+            <title>Remplir le profil sportif</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" type="text/css" 
                   href="js/rs-plugin/css/settings.css" media="screen">
@@ -52,83 +59,76 @@
             </div>
         </div>
 
-        <!-- Tête -->
+        <!-- TÃªte -->
         <section id="intro">
             <div class="intro-content">
                 <h2>JEAN DAVID COACHING</h2>
-                <h3>Page Inscription</h3>
+                <h3>Informations supplÃ©mentaires du profil sportif</h3>
             </div>
         </section>
 
-        <!--formulaire inscription-->
-        <section id="section-inscription" class="section appear clearfix">
+        <!--formulaire profile sportif-->
+        <section id="section-profilsportif" class="section appear clearfix">
             <div class="container">
                 <div class="row mar-bot40">
                     <div class="col-md-offset-3 col-md-6">
                         <div class="section-header">
-                            <h2 class="section-heading animated" data-animation="bounceInUp">Inscrivez vos coordonnées</h2>
-                            <h4>Les informations suivies d'un astérisque sont obligatoires.</h4>
+                            <h2 class="section-heading animated" data-animation="bounceInUp">Mesurations cÃ´tÃ© gauche</h2>
                         </div>
+
 
                         <div class="cform" id="contact-form">
-                            <form name="Formulaires" method="get" onsubmit="return verifier()">
-                                <div name='genre'>
-                                    Genre : (*)
-                                    <select name="genre" id ="genre"class="form-control-static">
-                                        <option value="H">Homme.</option>
-                                        <option value="F">Femme.</option>
-                                    </select>
-                                </div>
+                            <form name="formulaireMesurations" method="get">
+                                <table>
+                                    <tr>
+                                    <div name="poitrine">
 
-                                <div class="field your-name form-group">
-                                    Nom : (*)
-                                    <input type="text" name="Nom" id ="nom" placeholder="Nom" class="cform-text" size="40" required>
-                                    <div class="validation"></div>
-                                </div>
-                                
-                                <div class="field your-name form-group">
-                                    Prénom : (*)
-                                    <input type="text" name="Prenom" id ="prenom" placeholder="Prénom" class="cform-text" size="40" required>
-                                    <div class="validation"></div>
-                                </div>
-                                
-                                <div>
-                                    Date de naissance : (*)
-                                    <input type="text" name="date" id ="date" placeholder="dd/mm/yyyy" class="cform-text" size="40" required>
-                                </div>
-                                
-                                <div>
-                                    Numéro de téléphone : (*)
-                                    <input type="text" name="tel" id="tel" pattern="[0-9]{10}" class="cform-text" size="40" required>
-                                </div>
-                                
-                                <div class="field your-email form-group">
-                                    Adresse Email:
-                                    <input type="email" name="mail1" id="mail1" placeholder="Email" class="cform-text" size="40" data-rule="email" data-msg="aaaa" required>(*)
-                                </div>
-                                <div class="field your-email form-group">
-                                    Confirmation Email:
-                                    <input type="email" name="mail2" id="mail2" placeholder="Confirmation Email" class="cform-text" size="40" data-rule="email"  required>(*)
-                                </div>
-                                <div class="field your-name form-group">
-                                    Mot de passe:
-                                    <input type="password" name="mdp" id = "mdp" class="cform-text" size="40" required>(*)
-                                </div>
-                                <div>
-                                    Objectif:
-                                    <select name="obj" id="obj" class="form-control-static">
-                                        <option value="objs">objectif sportif</option>
-                                        <option value="objm">objectif minceur</option>
-                                    </select>(*)
-                                </div>
+                                        <td>Poitrine (cm):</td>
+                                        <td><input type="number" name="poitrine"></td>
+                                    </div>
+                                    </tr>
 
-                                <p><input type="submit" onClick="ServletInscriptionUtilisateur()" value="Envoyer" class="btn btn-theme"/>
-                                   <input type="reset" value="Effacer" class="btn btn-theme" /></p>
+                                    <tr>  
+                                    <div name="taille">                    
+                                        <td>Taille (cm): </td>
+                                        <td><input type="number" name="poitrine"></td>
+                                    </div>
+                                    </tr>
+
+                                    <tr>  
+                                    <div name="hanche">                    
+                                        <td>Hanches (cm): </td>
+                                        <td><input type="number" name="hanche"></td>
+                                    </div>
+                                    </tr>
+
+                                    <tr>  
+                                    <div name="cuisse">                    
+                                        <td>Cuisses (cm): </td>
+                                        <td><input type="number" name="cuisse"></td>
+                                    </div>
+                                    </tr>
+
+                                    <tr>  
+                                    <div name="bras">                    
+                                        <td>Bras (cm): </td>
+                                        <td><input type="number" name="bras"></td>
+                                    </div>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <input type="submit" class="btn btn-theme" value="Envoyer"/>
+                                        </td>
+                                    </tr>
+
+                                </table>
                             </form>
                         </div>
+
                     </div>
                 </div>
-            </div>
         </section>
 
         <!--footer-->
@@ -159,8 +159,7 @@
                 </div>
             </div>
         </section>
-
-
     </body>
 </html>
 </f:view>
+
