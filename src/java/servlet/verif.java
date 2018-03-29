@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -52,32 +53,36 @@ public class verif extends HttpServlet {
             //COACH
             if (rs == 1) {
                 // out.println("coach Login succes!!!");
-                request.setAttribute("id", ida);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("id", ida);
                 rd = request.getRequestDispatcher("index.jsp");// il faut changer adresse
 
                 rd.forward(request, response);
             } //CLIENT
             else if (rs == 2) {
                 //     out.println(" client Login sucess!!!");
-                request.setAttribute("id", ida);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("id", ida);
                 rd = request.getRequestDispatcher("inscription.jsp");// il faut changer adresse
                 rd.forward(request, response);
             } //ADMIN
             else if (rs == 3) {
                 //  out.println(" admin Login sucess!!!");
-                request.setAttribute("id", ida);
+                //request.setAttribute("id", ida);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("id", ida);
                 rd = request.getRequestDispatcher("/pageadmin.jsp");// il faut changer adresse
                 rd.forward(request, response);
             } else //ko
             {
                 out.println("<script LANGUAGE='JavaScript'>");
                 out.println("alert('Adresse mail ou mot de passe pas correct!!!');window.location='connection.html'");
-
                 out.println("</script>");
 
             }
-          //  rd.forward(request, response);
-        } 
+
+            //  rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

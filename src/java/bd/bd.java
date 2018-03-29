@@ -114,6 +114,48 @@ public class bd {
 
         return lstI;
     }
+    
+      //PROPORTION STATUS DE CLIENT
+    public ArrayList<String> indicClientStatu() throws SQLException {
+        int nbv = 0, nbatt = 0,nbtotal=0;
+        Statement st, st2, st3;
+        //nb de client valide
+        String sql = "SELECT COUNT(*)AS NBVALIDE FROM UTILISATEUR WHERE STATUTU='VALIDE'";
+        st = cx.createStatement();
+        ResultSet rs = st.executeQuery(sql); //resultat    
+        //result
+        while (rs.next()) {
+            nbv = Integer.parseInt(rs.getString("NBVALIDE"));
+        }
+        //nb client en attente
+        String sql2 = "SELECT COUNT(*)AS NBATTENTE FROM UTILISATEUR WHERE STATUTU='EN ATTENTE'";
+        st2 = cx.createStatement();
+        ResultSet rs2 = st2.executeQuery(sql2); //resultat    
+        //result
+        while (rs2.next()) {
+            nbatt = Integer.parseInt(rs2.getString("NBATTENTE"));
+        }
+        
+       //nb client total
+        String sql3 = "SELECT COUNT(*)AS NBTOTAL FROM UTILISATEUR WHERE TYPEU='CLIENT'";
+        st3 = cx.createStatement();
+        ResultSet rs3 = st3.executeQuery(sql3); //resultat    
+        //verifier
+        while (rs3.next()) {
+            nbtotal = Integer.parseInt(rs3.getString("NBTOTAL"));
+        }
+        ArrayList<String> indic=new ArrayList<String>();
+        indic.add(String.valueOf((nbv*100)/nbtotal));//% de client valider  0
+        indic.add(String.valueOf((nbatt*100)/nbtotal));//% de client en attente  1
+        indic.add(String.valueOf(nbtotal));  //2 client total
+        indic.add(String.valueOf(nbv));  //3 client valider
+        indic.add(String.valueOf(nbatt));  //4 client en attente
+      
+   return indic;
+
+    }
+    
+    
     //Methode de récuperration des utilisateurs
     public ArrayList<Utilisateur> obtenirutilisateurs() {
         ArrayList<Utilisateur> listeUtilisateur = new ArrayList();

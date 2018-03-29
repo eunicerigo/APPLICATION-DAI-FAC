@@ -18,10 +18,10 @@
 </head>
 <body>
     <%
-        String ida = (String) request.getAttribute("id");
-        session.setAttribute("id", ida);
+        String ida = (String) session.getAttribute("id");
+       
         int id = Integer.parseInt(ida);
-
+        
         bd unebd = new bd();
         ArrayList<Utilisateur> lstu = unebd.userConnect(id);
         for (Utilisateur u : lstu) {
@@ -32,10 +32,9 @@
     %>
 
     <P><a href="">Visualiser la liste des client</a></P> 
-    <P><a href="">Visualiser les indicateurs sur client</a></P>
-    </br><a href='accueil.jsp'>
-               <%session.invalidate();
-                %>Deconnecter</a>
+    <P><a href="visualiserIndic.jsp">Visualiser les indicateurs sur client</a></P>
+    
+    <a href="logout.jsp?close=close">Deconnecter</a>
 
 
 </body>
