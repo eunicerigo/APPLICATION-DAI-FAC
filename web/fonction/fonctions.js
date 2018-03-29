@@ -38,18 +38,63 @@ function getXMLHttpRequest()
 
 
 
-
-function inscrireUtilisateur() {
+function inscrireUtilisateur(){
     var xhr = getXMLHttpRequest();
-    var civ = "civ=" + document.getElementById("civilite").value;
+    
+    var genre = "genre=" + document.getElementById("genre").value;
     var nom = "nom=" + document.getElementById("nom").value;
     var prenom = "prenom=" + document.getElementById("prenom").value;
     var date = "date=" + document.getElementById("date").value;
     var tel = "tel=" + document.getElementById("tel").value;
     var mail1 = "mail1=" + document.getElementById("mail1").value;
-    var mail2 = "mail2=" + document.getElementById("mail2").value;
-    var mdp = "mdp=" + document.getElementById("mdp").value;
-    var obj = "obj=" + document.getElementById("obj").value;
+     var mail2 = "mail2=" + document.getElementById("mail2").value;
+     var mdp = "mdp=" + document.getElementById("mdp").value;
+     var obj = "obj=" + document.getElementById("obj").value;
+     
+   
+            var elt = document.getElementById("eunice");
+            elt.innerHTML = "sssssssssssssssssssss"
+            
+     
+      requeteXML.onreadystatechange = function ()
+    {
+        //Si l'on a tout reçu et que la requête http s'est bien passée.
+        if (requeteXML.readyState === 4 && requeteXML.status === 200) {
+            
+            
+            var elt = document.getElementById("eunice");
+            elt.innerHTML = "sssssssssssssssssssss"
+            
+            
+            
+            
+        }
+    };
+     
+
+    xhr.open("GET", "ServletInscriptionUtilisation?genre=" + genre & "?nom="+ nom & "?prenom=" + prenom  & "?datenaissance=" + date & "?tel="+tel & "?mail1=" + mail1 & "?mdp=" + mdp & "?obj=" + obj);
+//    xhr.open("GET", "ServletInscriptionUtilisateur?nom=" + nom);
+//    xhr.open("GET", "ServletInscriptionUtilisateur?prenom=" + prenom);
+//    xhr.open("GET", "ServletInscriptionUtilisateur?datenaissance=" + datenaissance);
+//    xhr.open("GET", "ServletInscriptionUtilisateur?tel=" + tel);
+//    xhr.open("GET", "ServletInscriptionUtilisateur?mail1=" + mail1);
+//    xhr.open("GET", "ServletInscriptionUtilisateur?mdp=" + mdp);
+//    xhr.open("GET", "ServletInscriptionUtilisateur?obj=" + obj);
+
+    requeteXML.send(null);
+    
+     
+}
+
+
+function checkEmail(Formulaires) {
+    if (Formulaires.mail1.value !== theForm.mail2.value)
+    {
+        alert('Those emails don\'t match!');
+        return false;
+    } else {
+        return true;
+    }
 }
 
 

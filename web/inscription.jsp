@@ -26,6 +26,10 @@
             <link rel="stylesheet" href="Vlava/css/style.css">
             <!-- skin -->
             <link rel="stylesheet" href="Vlava/css/default.css">
+
+            <SCRIPT language="JavaScript"  src="script.js">
+            </script>
+            <SCRIPT type =text/javascript src =fonction/fonctions.js></SCRIPT>
         </head>
 
         <body>
@@ -70,7 +74,7 @@
                         </div>
 
                         <div class="cform" id="contact-form">
-                            <form name="Formulaires" method="get" onsubmit="return verifier()">
+                            <form name="Formulaires" method="get"id ="Formulaires" action="ServletInscriptionUtilisation"  onsubmit="return verifier()">
                                 <div name='genre'>
                                     Genre : (*)
                                     <select name="genre" id ="genre"class="form-control-static">
@@ -84,23 +88,23 @@
                                     <input type="text" name="Nom" id ="nom" placeholder="Nom" class="cform-text" size="40" required>
                                     <div class="validation"></div>
                                 </div>
-                                
+
                                 <div class="field your-name form-group">
                                     Prénom : (*)
                                     <input type="text" name="Prenom" id ="prenom" placeholder="Prénom" class="cform-text" size="40" required>
                                     <div class="validation"></div>
                                 </div>
-                                
+
                                 <div>
                                     Date de naissance : (*)
                                     <input type="text" name="date" id ="date" placeholder="dd/mm/yyyy" class="cform-text" size="40" required>
                                 </div>
-                                
+
                                 <div>
                                     Numéro de téléphone : (*)
                                     <input type="text" name="tel" id="tel" pattern="[0-9]{10}" class="cform-text" size="40" required>
                                 </div>
-                                
+
                                 <div class="field your-email form-group">
                                     Adresse Email:
                                     <input type="email" name="mail1" id="mail1" placeholder="Email" class="cform-text" size="40" data-rule="email" data-msg="aaaa" required>(*)
@@ -121,8 +125,8 @@
                                     </select>(*)
                                 </div>
 
-                                <p><input type="submit" onClick="ServletInscriptionUtilisateur()" value="Envoyer" class="btn btn-theme"/>
-                                   <input type="reset" value="Effacer" class="btn btn-theme" /></p>
+                                <p><input type="submit"  value="Envoyer" class="btn btn-theme"/>
+                                    <input type="reset" value="Effacer" class="btn btn-theme" /></p>
                             </form>
                         </div>
                     </div>
@@ -160,6 +164,6 @@
         </section>
 
 
-    </body>
-</html>
+        </body>
+    </html>
 </f:view>

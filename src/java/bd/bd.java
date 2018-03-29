@@ -214,7 +214,7 @@ public class bd {
         return listeUtilisateur;
     }
 
-    public int inscrirebaseutilisateur(Utilisateur lutilisateur) {
+    public  int inscrirebaseutilisateur(Utilisateur lutilisateur) {
         //Espace d'exécution de la requête
         Statement st = null;
         try {
@@ -224,14 +224,28 @@ public class bd {
             System.out.println("Echec lors de la création de l'espace d'exécution " + ex.getMessage());
         }
 
+        
+        Date x = new Date();
+        
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
+        
+        String pi = formatDate.format(x);
+        
+        
+        
         //Requête SQL
         String inscrirebase = "INSERT INTO UTILISATEUR "
-                + "(CODEU, NOMU, PRENOMU, MAILU, MDPU, GENREU, TELU) "
+                + "(CODEU, NOMU, PRENOMU, MAILU, MDPU, GENREU, TELU,TYPEU,DATEINSCRI,DATENAISSANCE) "
                 + "VALUES ('" + lutilisateur.getCodeu() + "','" + lutilisateur.getNomu() + "','"
                 + lutilisateur.getPrenomu() + "','" + lutilisateur.getMailu() + "','" + lutilisateur.getMdpu() + "','"
                 + lutilisateur.getGenreu() + "','" + lutilisateur.getTelu()
-                + "');";
+                +  "','" + "CLIENT" + "','" + pi + "','" + pi+"');";
 
+        
+        
+        //lutilisateur.getDatenaissanceu()
+        
+        
         int nb_ligne_modifie = 0;
         try {
             //Ouverture de l'espace de requête
@@ -262,6 +276,7 @@ public class bd {
         }
         return nb_ligne_modifie;
     }
+
 
     public int supprimerutilisateur(Utilisateur lutilisateur) {
         //Espace d'exécution de la requête
