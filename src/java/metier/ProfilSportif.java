@@ -42,6 +42,9 @@ public class ProfilSportif {
         }
         return true;
     }
+
+    public ProfilSportif() {
+    }
     
 
     /**
