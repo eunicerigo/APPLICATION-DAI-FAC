@@ -7,6 +7,8 @@ package metier;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -27,6 +29,33 @@ public class Utilisateur {
     private Date dateinscri;
     private Date datevalid;
     private String statutu;
+    private Set<Mesurer> mesurer = new HashSet<Mesurer>(0);
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 31 * hash + this.codeu;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Utilisateur other = (Utilisateur) obj;
+        if (this.codeu != other.codeu) {
+            return false;
+        }
+        return true;
+    }
+    
 
     /**
      * Constructeur d'un utilisateur avec tout ces attributs
@@ -340,6 +369,15 @@ public class Utilisateur {
     public void setStatutu(String statutu) {
         this.statutu = statutu;
     }
+
+    public Set<Mesurer> getMesurer() {
+        return mesurer;
+    }
+
+    public void setMesurer(Set<Mesurer> mesurer) {
+        this.mesurer = mesurer;
+    }
+    
 
     /**
      * Méthode permettant de récupérer la date de naissance au format String

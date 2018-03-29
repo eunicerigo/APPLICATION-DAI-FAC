@@ -39,18 +39,17 @@ function getXMLHttpRequest()
 
 
 
-function inscrireUtilisateur(){
+function inscrireUtilisateur() {
     var xhr = getXMLHttpRequest();
-    
     var civ = "civ=" + document.getElementById("civilite").value;
     var nom = "nom=" + document.getElementById("nom").value;
     var prenom = "prenom=" + document.getElementById("prenom").value;
     var date = "date=" + document.getElementById("date").value;
     var tel = "tel=" + document.getElementById("tel").value;
     var mail1 = "mail1=" + document.getElementById("mail1").value;
-     var mail2 = "mail2=" + document.getElementById("mail2").value;
-     var mdp = "mdp=" + document.getElementById("mdp").value;
-     var obj = "obj=" + document.getElementById("obj").value;
+    var mail2 = "mail2=" + document.getElementById("mail2").value;
+    var mdp = "mdp=" + document.getElementById("mdp").value;
+    var obj = "obj=" + document.getElementById("obj").value;
 }
 
 

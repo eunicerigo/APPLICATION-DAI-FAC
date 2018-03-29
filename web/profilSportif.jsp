@@ -81,39 +81,38 @@
                             <form name="formulaireMesurations" method="get">
                                 <table>
                                     <tr>
-                                    <div name="poitrine">
-
+                                  
                                         <td>Poitrine (cm):</td>
-                                        <td><input type="number" name="poitrine"></td>
-                                    </div>
+                                        <td><input type="number" name="poitrine" id="poitrine"></td>
+                                   
                                     </tr>
 
                                     <tr>  
-                                    <div name="taille">                    
+                                                     
                                         <td>Taille (cm): </td>
-                                        <td><input type="number" name="poitrine"></td>
-                                    </div>
+                                        <td><input type="number" name="taille" id="taille"></td>
+                                   
                                     </tr>
 
                                     <tr>  
-                                    <div name="hanche">                    
+                                                      
                                         <td>Hanches (cm): </td>
-                                        <td><input type="number" name="hanche"></td>
-                                    </div>
+                                        <td><input type="number" name="hanche" id="hanche"></td>
+                                    
                                     </tr>
 
                                     <tr>  
-                                    <div name="cuisse">                    
+                                                      
                                         <td>Cuisses (cm): </td>
-                                        <td><input type="number" name="cuisse"></td>
-                                    </div>
+                                        <td><input type="number" name="cuisse" id="cuisse"></td>
+                                   
                                     </tr>
 
                                     <tr>  
-                                    <div name="bras">                    
+                                                        
                                         <td>Bras (cm): </td>
-                                        <td><input type="number" name="bras"></td>
-                                    </div>
+                                        <td><input type="number" name="bras" id="bras"></td>
+                                   
                                     </tr>
 
                                     <tr>
