@@ -53,7 +53,6 @@ public class bd {
         Statement st;
         int rs1 = 0;
 
-
         String sql = "select TYPEU from UTILISATEUR where MAILU='" + email + "' and MDPU = '" + mdp + "'";
         st = cx.createStatement();
         ResultSet rs = st.executeQuery(sql); //resultat
@@ -77,10 +76,44 @@ public class bd {
         {
             rs1 = 4;
         }
-       return rs1;
+        return rs1;
 
     }
 
+    public int idUser(String email, String mdp) throws SQLException {
+        Statement st;
+        int id = 0;
+        String sql = "select CODEU from UTILISATEUR where MAILU='" + email + "' and MDPU = '" + mdp + "'";
+        st = cx.createStatement();
+        ResultSet rs = st.executeQuery(sql); //resultat
+
+        //verifier
+        if (rs.next()) {
+            System.out.println("connect ok");
+            //ok
+            id = rs.getInt("CODEU");
+            // System.out.println(id);
+        }
+        return id;
+
+    }
+
+    //affihcer les info pour savoir c'est qui en train de connecter ArrayList<Utilisateur>
+    public ArrayList<Utilisateur> userConnect(int id) throws SQLException, ParseException {
+        Statement st;
+        String sql = "SELECT NOMU,PRENOMU,MAILU,GENREU,DATENAISSANCE,TELU,TYPEU FROM UTILISATEUR WHERE CODEU=" + id;
+        st = cx.createStatement();
+        ArrayList<Utilisateur> lstI = new ArrayList();
+        ResultSet rs = st.executeQuery(sql); //resultat    
+
+        //verifier
+        while (rs.next()) {
+            SimpleDateFormat forma = new SimpleDateFormat("yyyy-mm-dd");
+            lstI.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("MAILU"), rs.getString("GENREU"), forma.parse(rs.getString("DATENAISSANCE")), rs.getString("TELU"), rs.getString("TYPEU")));
+        }
+
+        return lstI;
+    }
     //Methode de récuperration des utilisateurs
     public ArrayList<Utilisateur> obtenirutilisateurs() {
         ArrayList<Utilisateur> listeUtilisateur = new ArrayList();

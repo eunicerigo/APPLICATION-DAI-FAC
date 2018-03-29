@@ -37,8 +37,8 @@ public class verif extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try(PrintWriter out = response.getWriter()) {
-            
+        try (PrintWriter out = response.getWriter()) {
+
             /* TODO output your page here. You may use following sample code. */
             RequestDispatcher rd = null;
             //GET Utilisateur
@@ -46,23 +46,28 @@ public class verif extends HttpServlet {
             String mdp = request.getParameter("txtmdp");
             bd unebd = new bd();
             int rs = unebd.verifLogin(email, mdp);
-
+            String ida = String.valueOf(unebd.idUser(email, mdp));
+            //out.println("alert(ida);window.location='connection.html'");
             //verifier
             //COACH
             if (rs == 1) {
-                out.println("coach Login succes!!!");
+                // out.println("coach Login succes!!!");
+                request.setAttribute("id", ida);
                 rd = request.getRequestDispatcher("index.jsp");// il faut changer adresse
-                 rd.forward(request, response);
+
+                rd.forward(request, response);
             } //CLIENT
             else if (rs == 2) {
-                out.println(" client Login sucess!!!");
+                //     out.println(" client Login sucess!!!");
+                request.setAttribute("id", ida);
                 rd = request.getRequestDispatcher("inscription.jsp");// il faut changer adresse
-                 rd.forward(request, response);
+                rd.forward(request, response);
             } //ADMIN
             else if (rs == 3) {
-                out.println(" admin Login sucess!!!");
-                rd = request.getRequestDispatcher("accueil.jsp");// il faut changer adresse
-                 rd.forward(request, response);
+                //  out.println(" admin Login sucess!!!");
+                request.setAttribute("id", ida);
+                rd = request.getRequestDispatcher("/pageadmin.jsp");// il faut changer adresse
+                rd.forward(request, response);
             } else //ko
             {
                 out.println("<script LANGUAGE='JavaScript'>");
@@ -71,7 +76,6 @@ public class verif extends HttpServlet {
                 out.println("</script>");
 
             }
-
           //  rd.forward(request, response);
         } 
     }
