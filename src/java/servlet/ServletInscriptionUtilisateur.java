@@ -69,11 +69,17 @@ public class ServletInscriptionUtilisateur extends HttpServlet {
         
 
         Utilisateur ut1 = new Utilisateur(nom, prenom, mail1, mdp, genre, datenaissance, tel, "CLIENT", datenaissance, "Potentiel");
+        ProfilSportif ps = new ProfilSportif();
 
         bd newbd = new bd();
 
         newbd.inscrirebaseutilisateur(ut1);
-        newbd.remplirProfilSportif();
+        
+        try {
+            newbd.remplirProfilSportif(ut1,ps);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServletInscriptionUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
 
     }
