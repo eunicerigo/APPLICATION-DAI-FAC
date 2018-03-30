@@ -110,7 +110,7 @@ public class bd {
         //verifier
         while (rs.next()) {
             SimpleDateFormat forma = new SimpleDateFormat("yyyy-mm-dd");
-            lstI.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("MAILU"), rs.getString("GENREU"), forma.parse(rs.getString("DATENAISSANCE")), rs.getString("TELU"), rs.getString("TYPEU")));
+            lstI.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("MAILU"), rs.getString("GENREU"), rs.getString("DATENAISSANCE"), rs.getString("TELU"), rs.getString("TYPEU")));
         }
 
         return lstI;
@@ -235,11 +235,11 @@ public class bd {
         
         //Requête SQL
         String inscrirebase = "INSERT INTO UTILISATEUR "
-                + "(CODEU, NOMU, PRENOMU, MAILU, MDPU, GENREU, TELU,TYPEU,DATEINSCRI,DATENAISSANCE) "
+                + "(CODEU, NOMU, PRENOMU, MAILU, MDPU, GENREU, TELU,TYPEU,DATEINSCRI,STATUTU,DATENAISSANCE) "
                 + "VALUES ('" + lutilisateur.getCodeu() + "','" + lutilisateur.getNomu() + "','"
                 + lutilisateur.getPrenomu() + "','" + lutilisateur.getMailu() + "','" + lutilisateur.getMdpu() + "','"
                 + lutilisateur.getGenreu() + "','" + lutilisateur.getTelu()
-                +  "','" + "CLIENT" + "','" + pi + "','" + pi+"');";
+                +  "','" + "CLIENT" + "','" + pi+ "','"+"POTENTIEL"+"','" +lutilisateur.getDatenaissanceu()  +"');";
 
         
         
@@ -364,5 +364,11 @@ public class bd {
 //            System.out.println(user.getNomu() + " " + user.getPrenomu());
 //        }
         unebd.verifLogin("EVABAIBAI@GMAIL.COM", "123123asd");
+        
+        
+        
+        
+     
+        
     }
 }

@@ -85,13 +85,13 @@
 
                                 <div class="field your-name form-group">
                                     Nom : (*)
-                                    <input type="text" name="Nom" id ="nom" placeholder="Nom" class="cform-text" size="40" required>
+                                    <input type="text" name="nom" id ="nom" placeholder="Nom" class="cform-text" size="40" required>
                                     <div class="validation"></div>
                                 </div>
 
                                 <div class="field your-name form-group">
                                     Prénom : (*)
-                                    <input type="text" name="Prenom" id ="prenom" placeholder="Prénom" class="cform-text" size="40" required>
+                                    <input type="text" name="prenom" id ="prenom" placeholder="Prénom" class="cform-text" size="40" required>
                                     <div class="validation"></div>
                                 </div>
 
@@ -107,11 +107,11 @@
 
                                 <div class="field your-email form-group">
                                     Adresse Email:
-                                    <input type="email" name="mail1" id="mail1" placeholder="Email" class="cform-text" size="40" data-rule="email" data-msg="aaaa" required>(*)
+                                    <input type="email" name="mail1" id="mail1" placeholder="Email" class="cform-text" size="40" data-rule="email" data-msg="aaaa" onkeyup="checkEmail()"required>(*)
                                 </div>
                                 <div class="field your-email form-group">
                                     Confirmation Email:
-                                    <input type="email" name="mail2" id="mail2" placeholder="Confirmation Email" class="cform-text" size="40" data-rule="email"  required>(*)
+                                    <input type="email" name="mail2" id="mail2" placeholder="Confirmation Email" class="cform-text" size="40" data-rule="email"  onkeyup="checkEmail()"required>(*)
                                 </div>
                                 <div class="field your-name form-group">
                                     Mot de passe:

@@ -22,7 +22,7 @@ public class Utilisateur {
     private String mailu;
     private String mdpu;
     private String genreu;
-    private Date datenaissanceu;
+    private String datenaissanceu;
     private String telu;
     private String infooptionnelle;
     private String typeu;
@@ -75,7 +75,7 @@ public class Utilisateur {
      * validé
      * @param statutu le statut de l'utilisateur (Potentiel, En attente, ...)
      */
-    public Utilisateur(int codeu, String nomu, String prenomu, String mailu, String mdpu, String genreu, Date datenaissanceu, String telu, String infooptionnelle, String typeu, Date dateinscri, Date datevalid, String statutu) {
+    public Utilisateur(int codeu, String nomu, String prenomu, String mailu, String mdpu, String genreu, String datenaissanceu, String telu, String infooptionnelle, String typeu, Date dateinscri, Date datevalid, String statutu) {
         this.codeu = codeu;
         this.nomu = nomu;
         this.prenomu = prenomu;
@@ -91,7 +91,7 @@ public class Utilisateur {
         this.statutu = statutu;
     }
 
-    public Utilisateur(String nomu, String prenomu, String mailu, String genreu, Date datenaissanceu, String telu, String typeu) {
+    public Utilisateur(String nomu, String prenomu, String mailu, String genreu, String datenaissanceu, String telu, String typeu) {
         this.nomu = nomu;
         this.prenomu = prenomu;
         this.mailu = mailu;
@@ -117,7 +117,7 @@ public class Utilisateur {
      * @param statutu le statut de l'utilisateur
      */
     public Utilisateur(String nomu, String prenomu, String mailu, String mdpu,
-            String genreu, Date datenaissanceu, String telu, String typeu,
+            String genreu, String datenaissanceu, String telu, String typeu,
             Date dateinscri, String statutu) {
         this.nomu = nomu;
         this.prenomu = prenomu;
@@ -251,7 +251,7 @@ public class Utilisateur {
      *
      * @return la date de naissance de l'utilisateur
      */
-    public Date getDatenaissanceu() {
+    public String getDatenaissanceu() {
         return datenaissanceu;
     }
 
@@ -260,7 +260,7 @@ public class Utilisateur {
      *
      * @param datenaissanceu la nouvelle date de naissance de l'utilisateur
      */
-    public void setDatenaissanceu(Date datenaissanceu) {
+    public void setDatenaissanceu(String datenaissanceu) {
         this.datenaissanceu = datenaissanceu;
     }
 

@@ -59,6 +59,10 @@ public class ServletInscriptionUtilisation extends HttpServlet {
         } catch (ParseException ex) {
             Logger.getLogger(ServletInscriptionUtilisation.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        
+        
+       String dateN = request.getParameter("date");
+        
         
         String tel = request.getParameter("tel");
     
@@ -71,7 +75,7 @@ public class ServletInscriptionUtilisation extends HttpServlet {
         
         
       //création d'un objet messageDor msgDor
-         Utilisateur ut1  = new Utilisateur(nom,prenom,mail1,mdp,genre,datenaissance,tel,"CLIENT",datenaissance,"Potentiel");
+         Utilisateur ut1  = new Utilisateur(nom,prenom,mail1,mdp,genre,dateN,tel,"CLIENT",datenaissance,"Potentiel");
   
       //connexion à la bd
             bd newbd = new bd(); 
