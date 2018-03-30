@@ -60,14 +60,9 @@ function inscrireUtilisateur(){
     {
         //Si l'on a tout reçu et que la requête http s'est bien passée.
         if (requeteXML.readyState === 4 && requeteXML.status === 200) {
-            
-            
+
             var elt = document.getElementById("eunice");
-            elt.innerHTML = "sssssssssssssssssssss"
-            
-            
-            
-            
+            elt.innerHTML = "sssssssssssssssssssss"        
         }
     };
      
@@ -154,8 +149,7 @@ function chargerListeClient(listeClientXML) {
     var i, client, liste, user, utilisateur;
     
     liste = liste + "<p><form method = 'get' action = 'adminmodifstatutclient.jsp'> ";
-    liste = "<table border='1'>";
-    liste = liste + "<tr>";
+    liste = "<table>";
     liste = liste + "<th> Nom </th>";
     liste = liste + "<th> Prénom </th>";
     liste = liste + "<th> Statut </th>";
@@ -167,7 +161,6 @@ function chargerListeClient(listeClientXML) {
     for (i = 0; i < client.length; i++) {
         user = client[i].firstChild.nodeValue;
         utilisateur = user.split("|");
-        liste = liste + "<tr>";
         liste = liste + "<td>" + utilisateur[0] + "</td>";
         liste = liste + "<td>" + utilisateur[1] + "</td>";
         liste = liste + "<td>" + utilisateur[2] + "</td>";
@@ -177,7 +170,7 @@ function chargerListeClient(listeClientXML) {
         liste = liste + "</tr>";
     }
     liste = liste + "</table>";
-    liste = liste + "<input type = 'submit' value ='Modifier'>";
+    liste = liste + "<input  type='submit' name='submit' value ='Modifier' class='btn btn-theme col-lg-3'><br><br>";
     liste = liste + "</form></p>";
     return liste;
 }
@@ -186,14 +179,12 @@ function chargerListeAbonne(listeClientXML) {
     var i, client, liste, user, utilisateur;
     
     //liste = liste + "<p><form method = 'get' action = 'adminsupclient.jsp'> ";
-    liste = "<table border='1'>";
-    liste = liste + "<tr>";
+    liste = "<table>";
     liste = liste + "<th> Nom </th>";
     liste = liste + "<th> Prénom </th>";
     liste = liste + "<th> Statut </th>";
     liste = liste + "<th> Date d'inscription </th>";
     liste = liste + "<th> Supprimer </th>";
-    liste = liste + "<tr>";
     
     client = listeClientXML.getElementsByTagName("utilisateur");
     for (i = 0; i < client.length; i++) {
