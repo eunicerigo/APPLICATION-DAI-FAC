@@ -146,6 +146,23 @@ public class Utilisateur {
         this.statutu = statutu;
         this.dateinscri = dateinscri;
     }
+    
+    /**
+     * Constructeur pour l'utilisateur récupérer det envoyé dans un formulaire
+     * @param nomu le nom d el'utilisateur
+     * @param prenomu le prenom de l'utilisateur
+     * @param statutu le statut de l'utilisateur
+     * @param dateinscri la date à laquele le client s'est inscrit
+     * @param mailu l'email de l'utilisateur
+     */
+    public Utilisateur(String nomu, String prenomu, String statutu,
+            Date dateinscri, String mailu) {
+        this.nomu = nomu;
+        this.prenomu = prenomu;
+        this.statutu = statutu;
+        this.dateinscri = dateinscri;
+        this.mailu = mailu;
+    }
 
     /**
      * Méthode permettant de récupérer le code de l'utilisateur
