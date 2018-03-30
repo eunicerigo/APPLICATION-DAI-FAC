@@ -26,7 +26,7 @@
         ArrayList<Utilisateur> lstu = unebd.userConnect(id);
         for (Utilisateur u : lstu) {
             out.println("<ul><li>NOM:" + u.getNomu() + "</li>" + "<li>PRENOM: " + u.getPrenomu() + "</li>"
-                    + "<li>MAIL: " + u.getMailu() + "</li>" + "<li>GENRE: " + u.getGenreu() + "</li>" + "<li>DATE NAISSANCE: " + new SimpleDateFormat("yyyy-mm-dd").format(u.getDatenaissanceu()) + "</li>" + "<li>TEL: " + u.getTelu() + "</li>" + "<li>TYPE: " + u.getTypeu() + "</li></ul>");
+                    + "<li>MAIL: " + u.getMailu() + "</li>" + "<li>GENRE: " + u.getGenreu() + "</li>" + "<li>DATE NAISSANCE: " + u.getDatenaissanceu() + "</li>" + "<li>TEL: " + u.getTelu() + "</li>" + "<li>TYPE: " + u.getTypeu() + "</li></ul>");
         }
 
     %>
@@ -34,6 +34,9 @@
     <P><a href="">Visualiser la liste des client</a></P> 
     <P><a href="visualiserIndic.jsp">Visualiser les indicateurs sur client</a></P>
     
+    
+     <P><a href="insciptionAdmin.jsp">Inscrire un client</a></P>
+     
     <a href="logout.jsp?close=close">Deconnecter</a>
 
 

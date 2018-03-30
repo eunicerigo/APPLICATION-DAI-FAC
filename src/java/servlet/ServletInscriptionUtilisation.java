@@ -41,174 +41,91 @@ public class ServletInscriptionUtilisation extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try (PrintWriter out = response.getWriter()) {
-             RequestDispatcher rd = null;
-             SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
+            RequestDispatcher rd = null;
+            SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
 
-        String genre = request.getParameter("genre");
+            String genre = request.getParameter("genre");
 
-        String nom = request.getParameter("nom");
-        
-        String prenom = request.getParameter("prenom");    
-        
-        Date datenaissance = null;  
-        
-        try {
-            datenaissance = formatDate.parse(request.getParameter("date"));
-        } catch (ParseException ex) {
-            Logger.getLogger(ServletInscriptionUtilisation.class.getName()).log(Level.SEVERE, null, ex);
+            String nom = request.getParameter("nom");
+
+            String prenom = request.getParameter("prenom");
+
+            Date datenaissance = null;
+
+            try {
+                datenaissance = formatDate.parse(request.getParameter("date"));
+            } catch (ParseException ex) {
+                Logger.getLogger(ServletInscriptionUtilisation.class.getName()).log(Level.SEVERE, null, ex);
+            }
+//        
+
+            String dateN = request.getParameter("date");
+
+            String tel = request.getParameter("tel");
+
+            String mail1 = request.getParameter("mail1");
+
+            String mdp = request.getParameter("mdp");
+
+            String obj = request.getParameter("obj");
+
+            String type = request.getParameter("type");
+
+            //création d'un objet messageDor msgDor
+            Utilisateur ut1 = new Utilisateur(nom, prenom, mail1, mdp, genre, dateN, tel, "CLIENT", datenaissance, "Potentiel");
+
+            //connexion à la bd
+            bd newbd = new bd();
+
+            int i;
+
+            //insérer un nouveau message dans bd si admin ou si client
+            if (type == null) {
+                i = newbd.inscrirebaseutilisateur(ut1);
+
+            } else {
+
+                i = newbd.inscrirebaseutilisateurAdmin(ut1);
+            }
+
+            String url;
+
+            if (i == 0) {
+
+                out.println("<script LANGUAGE='JavaScript'>");
+                out.println("alert('Vous etes deja inscrit !!!');window.location='inscription.jsp'");
+                out.println("</script>");
+
+//                rd = request.getRequestDispatcher("testEunice.html");
+//                rd.forward(request, response);
+
+            } else {
+
+                if (type == null) {
+
+                    out.println("<script LANGUAGE='JavaScript'>");
+                    out.println("alert('BIEN INSCIT ! Vous allez etre rediriger vers la page de connection ');window.location='connection.html'");
+                    out.println("</script>");
+
+                    rd = request.getRequestDispatcher("connection.html");
+                    rd.forward(request, response);
+
+                } else {
+
+                    out.println("<script LANGUAGE='JavaScript'>");
+                    out.println("alert('Vous avez bien inscrit le client !!!');window.location='pageadmin.jsp'");
+                    out.println("</script>");
+
+                    rd = request.getRequestDispatcher("pageadmin.jsp");
+                    rd.forward(request, response);
+
+                }
+
+            }
+
         }
-//        
-        
-       String dateN = request.getParameter("date");
-        
-        
-        String tel = request.getParameter("tel");
-    
-        
-        String mail1 = request.getParameter("mail1");
-        
-        String mdp = request.getParameter("mdp");
-
-        String obj = request.getParameter("obj");
-        
-        
-      //création d'un objet messageDor msgDor
-         Utilisateur ut1  = new Utilisateur(nom,prenom,mail1,mdp,genre,dateN,tel,"CLIENT",datenaissance,"Potentiel");
-  
-      //connexion à la bd
-            bd newbd = new bd(); 
-      
-                 //insérer un nouveau message dans bd
-                 int i = newbd.inscrirebaseutilisateur(ut1);
-                 
-                 
-                 
-                 out.print(i);
-                 String url ;
-                 
-                 if (i == 0) {
-                     
-                 rd = request.getRequestDispatcher("testEunice.html");// il faut changer adresse
-                 rd.forward(request, response);
-                
-            
-            }
-             
-            else
-            {
-                rd = request.getRequestDispatcher("connection.html");// il faut changer adresse
-                 rd.forward(request, response);
-            }
- 
- 
-                  
-      } 
-       
-//        
-//        
-//  
-//        Utilisateur ut1  = new Utilisateur(nom,prenom,mail1,mdp,genre,datenaissance,tel,"CLIENT",datenaissance,"Potentiel");
-//        
-//      
-//        int i = newbd.inscrirebaseutilisateur(ut1) ;
-//        
-//             
-//            
-////            /* TODO output your page here. You may use following sample code. */
-////            out.println("<!DOCTYPE html>");
-////            out.println("<html>");
-////            out.println("<head>");
-////            out.println("<title>Servlet ServletInscriptionUtilisation</title>");            
-////            out.println("</head>");
-////            out.println("<body>");
-////            out.println("<h1>Servlet ServletInscriptionUtilisation at " + request.getContextPath() + "</h1>");
-////            out.println("</body>");
-////            out.println("</html>");
-//       }
-//
-//
-//        
-//        
-//       
-//        
-//       Utilisateur ut1  = new Utilisateur(nom,prenom,mail1,mdp,genre,datenaissance,tel,"CLIENT",datenaissance,"Potentiel");
-//        
-//       bd newbd = new bd(); 
-//       
-//        int i = newbd.inscrirebaseutilisateur(ut1) ;
-//       RequestDispatcher rd;
-//    
-//
-//       String url ;
-//       String url2 = "testEunice2.html" ; 
-//    
-//            if (i == 0) {
-//                
-//              url = "testEunice.html" ; 
-//            }
-//             
-//            else
-//            {
-//                url="testEunice2.html" ;
-//            }
-// 
-//            rd = request.getRequestDispatcher(url);
-//        rd.forward(request, response);
-//      
-       
-//        
-//        
-//  
-//        Utilisateur ut1  = new Utilisateur(nom,prenom,mail1,mdp,genre,datenaissance,tel,"CLIENT",datenaissance,"Potentiel");
-//        
-//      
-//        int i = newbd.inscrirebaseutilisateur(ut1) ;
-//        
-//             
-//            
-////            /* TODO output your page here. You may use following sample code. */
-////            out.println("<!DOCTYPE html>");
-////            out.println("<html>");
-////            out.println("<head>");
-////            out.println("<title>Servlet ServletInscriptionUtilisation</title>");            
-////            out.println("</head>");
-////            out.println("<body>");
-////            out.println("<h1>Servlet ServletInscriptionUtilisation at " + request.getContextPath() + "</h1>");
-////            out.println("</body>");
-////            out.println("</html>");
-//       }
-//
-//
-//        
-//        
-//       
-//        
-//       Utilisateur ut1  = new Utilisateur(nom,prenom,mail1,mdp,genre,datenaissance,tel,"CLIENT",datenaissance,"Potentiel");
-//        
-//       bd newbd = new bd(); 
-//       
-//        int i = newbd.inscrirebaseutilisateur(ut1) ;
-//       RequestDispatcher rd;
-//    
-//
-//       String url ;
-//       String url2 = "testEunice2.html" ; 
-//    
-//            if (i == 0) {
-//                
-//              url = "testEunice.html" ; 
-//            }
-//             
-//            else
-//            {
-//                url="testEunice2.html" ;
-//            }
-// 
-//            rd = request.getRequestDispatcher(url);
-//        rd.forward(request, response);
-//     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -224,7 +141,7 @@ public class ServletInscriptionUtilisation extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
 ////        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
 ////        
 ////        
@@ -275,7 +192,7 @@ public class ServletInscriptionUtilisation extends HttpServlet {
 ////       
 ////       
 ////        
-}
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.

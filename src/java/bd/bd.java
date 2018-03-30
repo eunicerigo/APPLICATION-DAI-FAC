@@ -226,13 +226,9 @@ public class bd {
 
         
         Date x = new Date();
-        
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
-        
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");   
         String pi = formatDate.format(x);
-        
-        
-        
+  
         //Requête SQL
         String inscrirebase = "INSERT INTO UTILISATEUR "
                 + "(CODEU, NOMU, PRENOMU, MAILU, MDPU, GENREU, TELU,TYPEU,DATEINSCRI,STATUTU,DATENAISSANCE) "
@@ -241,11 +237,6 @@ public class bd {
                 + lutilisateur.getGenreu() + "','" + lutilisateur.getTelu()
                 +  "','" + "CLIENT" + "','" + pi+ "','"+"POTENTIEL"+"','" +lutilisateur.getDatenaissanceu()  +"');";
 
-        
-        
-        //lutilisateur.getDatenaissanceu()
-        
-        
         int nb_ligne_modifie = 0;
         try {
             //Ouverture de l'espace de requête
@@ -261,13 +252,53 @@ public class bd {
             System.out.println("Echec lors de la fermeture de l'espace d'exécution de la requête " + ex.getMessage());
         }
 
-        /*Commit de la modification de la base de donnére
+        //Fermeture de la connexion à la base de données
         try {
-            System.out.println("test du commit");
-            cx.commit();
+            cx.close();
         } catch (SQLException ex) {
-            System.out.println("Echec lors du commit d ela base de données "+ex.getMessage());
-        }*/
+            System.out.println("Echec lors de la fermeture de la connexion à la base de données " + ex.getMessage());
+        }
+        return nb_ligne_modifie;
+    }
+    
+    public  int inscrirebaseutilisateurAdmin(Utilisateur lutilisateur) {
+        //Espace d'exécution de la requête
+        Statement st = null;
+        try {
+            //Espace d'exécution de la requête
+            st = cx.createStatement();
+        } catch (SQLException ex) {
+            System.out.println("Echec lors de la création de l'espace d'exécution " + ex.getMessage());
+        }
+
+        
+        Date x = new Date();
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");   
+        String pi = formatDate.format(x);
+  
+        //Requête SQL
+        String inscrirebase = "INSERT INTO UTILISATEUR "
+                + "(CODEU, NOMU, PRENOMU, MAILU, MDPU, GENREU, TELU,TYPEU,DATEINSCRI,STATUTU,DATENAISSANCE) "
+                + "VALUES ('" + lutilisateur.getCodeu() + "','" + lutilisateur.getNomu() + "','"
+                + lutilisateur.getPrenomu() + "','" + lutilisateur.getMailu() + "','" + lutilisateur.getMdpu() + "','"
+                + lutilisateur.getGenreu() + "','" + lutilisateur.getTelu()
+                +  "','" + "CLIENT" + "','" + pi+ "','"+"VALIDE"+"','" +lutilisateur.getDatenaissanceu()  +"');";
+
+        int nb_ligne_modifie = 0;
+        try {
+            //Ouverture de l'espace de requête
+            nb_ligne_modifie = st.executeUpdate(inscrirebase);
+        } catch (SQLException ex) {
+            System.out.println("Echec lors de l'insertion de l'utilisateur " + ex.getMessage());
+        }
+
+        //Fermeture de l'espace d'exécution de la requête
+        try {
+            st.close();
+        } catch (SQLException ex) {
+            System.out.println("Echec lors de la fermeture de l'espace d'exécution de la requête " + ex.getMessage());
+        }
+
         //Fermeture de la connexion à la base de données
         try {
             cx.close();
