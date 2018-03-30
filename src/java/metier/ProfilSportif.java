@@ -5,6 +5,9 @@
  */
 package metier;
 
+import java.util.Date;
+import java.util.HashMap;
+
 /**
  *
  * @author FLEXICSSS
@@ -17,6 +20,7 @@ public class ProfilSportif {
     private String cuisse;
     private String bras;
     private String poitrine;
+    private HashMap<Date,Utilisateur> mesurer;
 
     @Override
     public int hashCode() {
@@ -63,6 +67,7 @@ public class ProfilSportif {
         this.cuisse = cuisse;
         this.bras = bras;
         this.poitrine = poitrine;
+        this.mesurer = new HashMap();
     }
 
     public ProfilSportif(String taille, String hanche, String cuisse, String bras, String poitrine) {
@@ -123,6 +128,23 @@ public class ProfilSportif {
         this.poitrine = poitrine;
     }
     
+    public HashMap<Date,Utilisateur> getMesurer() {
+        return this.mesurer;
+    }
     
+    public void setMesurer(HashMap<Date,Utilisateur> mesurer) {
+        this.mesurer = mesurer;
+    }
     
+    public void ajouterMesurer(Date d, Utilisateur u) {
+        this.mesurer.put(d, u);
+    }
+    
+    public void retirerUtilisateur(Utilisateur u) {
+        for(HashMap.Entry<Date,Utilisateur> entry : this.mesurer.entrySet()) {
+            if(u.getCodeu()==entry.getValue().getCodeu()) {
+                this.mesurer.remove(entry.getKey());
+            }
+        }
+    }
 }

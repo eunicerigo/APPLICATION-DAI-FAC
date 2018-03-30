@@ -7,6 +7,7 @@ package metier;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class Utilisateur {
     private Date dateinscri;
     private Date datevalid;
     private String statutu;
-    private Set<Mesurer> mesurer = new HashSet<Mesurer>(0);
+    private HashMap<Date, ProfilSportif> mesurer;
 
     @Override
     public int hashCode() {
@@ -58,7 +59,7 @@ public class Utilisateur {
     
 
     /**
-     * Constructeur d'un utilisateur avec tout ces attributs
+     * Constructeur d'un utilisateur avec tout ces attributs de bases
      *
      * @param codeu le code de l'utilisateur
      * @param nomu le nom de l'utilisateur
@@ -89,6 +90,7 @@ public class Utilisateur {
         this.dateinscri = dateinscri;
         this.datevalid = datevalid;
         this.statutu = statutu;
+        this.mesurer = new HashMap();
     }
 
     public Utilisateur(String nomu, String prenomu, String mailu, String genreu, String datenaissanceu, String telu, String typeu) {
@@ -387,12 +389,24 @@ public class Utilisateur {
         this.statutu = statutu;
     }
 
-    public Set<Mesurer> getMesurer() {
+    public HashMap<Date,ProfilSportif> getMesurer() {
         return mesurer;
     }
 
-    public void setMesurer(Set<Mesurer> mesurer) {
+    public void setMesurer(HashMap<Date,ProfilSportif> mesurer) {
         this.mesurer = mesurer;
+    }
+    
+    public void ajouterMesure(Date d, ProfilSportif ps) {
+        this.mesurer.put(d, ps);
+    }
+    
+    public void retirerProfilSportif(ProfilSportif ps) {
+        for(HashMap.Entry<Date,ProfilSportif> entry : this.mesurer.entrySet()) {
+            if(ps.getCodePs()==entry.getValue().getCodePs()) {
+                this.mesurer.remove(entry.getKey());
+            }
+        }
     }
     
 
