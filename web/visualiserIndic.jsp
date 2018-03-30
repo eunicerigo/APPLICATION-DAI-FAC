@@ -14,48 +14,179 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Indicateur de client</title>
+        <link rel="stylesheet" type="text/css" 
+              href="Vlava/js/rs-plugin/css/settings.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="Vlava/css/isotope.css" media="screen">
+        <link rel="stylesheet" 
+              href="flexslider.css" type="text/css">
+        <link rel="stylesheet" href="Vlava/js/jquery.fancybox.css" type="text/css" 
+              media="screen">
+        <link rel="stylesheet" href="Vlava/css/bootstrap.css">
+        <link rel="stylesheet" 
+              href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700">
+        <link rel="stylesheet" href="Vlava/css/style.css">
+        <link rel="stylesheet" href="Vlava/css/icon-component.css">
+        <!-- skin -->
+        <link rel="stylesheet" href="Vlava/css/default.css">
     </head>
     <body>
-        <%
-            //récupérer les info dans jsp
-            String ida = (String) session.getAttribute("id");
-            out.println(ida);
-            int id = Integer.parseInt(ida);
-            out.println(id);
-            bd unebd = new bd();
+        <section id="header" class="appear"></section>
+        <div class="navbar navbar-fixed-top" role="navigation" 
+             data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" 
+             data-300="line-height:60px; height:60px; background-color:rgba(5, 42, 62, 1);">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="fa fa-bars color-white"></span>
+                    </button>
+                </div>
 
-            ArrayList<Utilisateur> lstu = unebd.userConnect(id);
-            for (Utilisateur u : lstu) {
-                out.println("<ul><li>NOM:" + u.getNomu() + "</li>" + "<li>PRENOM: " + u.getPrenomu() + "</li></ul>");
-            }
+                <!-- Menu en haut -->
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+                        <li><a href="accueil.jsp">Home</a></li>
+                        <li><a href="accueil.jsp#testimonials">Apercu</a></li>
+                        <li><a href="accueil.jsp#section-contact">Contact</a></li>
+                        <li><a href="logout.jsp?close=close">Deconnecter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <section id="intro">
+            <div class="intro-content">
+                <h2>JEAN DAVID COACHING</h2>
+                <%
+                    String idut = (String) session.getAttribute("id");
 
-        %>
-        <h1>Indicateur de client</h1>
-        <h2>Indicateur sur le status de client:</h2>
-        <%            ArrayList<String> indic = unebd.indicClientStatu();
-            out.println("Nombre des clients total:");
-            out.println(indic.get(2));
-        %>
-        <p> </p>
-        <%
-            out.println("Pourcentage des clients validés:");
-            out.println(indic.get(0) + "%");
-        %>
-        <p>  </p>
-        <% out.println("Nombre des clients validés:");
-            out.println(indic.get(3));
-        %>
+                    int i = Integer.parseInt(idut);
+
+                    bd bd = new bd();
+                    ArrayList<Utilisateur> listeEnHaut = bd.userConnect(i);
+                    for (Utilisateur u : listeEnHaut) {
+                        out.println("<h3>Bonjour ! " + u.getNomu() + " " + u.getPrenomu() + "</h3>");
+                    }
+                %>  
+                
+            </div>
+        </section>
 
 
-        <P>  </P>
-            <%
-                out.println("Pourcentage des clients en attente:");
-                out.println(indic.get(1) + "%");
-            %>
-        <p> </p>
-        <%  out.println("Nombre des clients en attente:");
-            out.println(indic.get(4));
-        %>
-<a href="logout.jsp?close=close">Deconnecter</a>
+        <div class="container">
+            <div class="row mar-bot40">
+
+                <div class="section-header">
+                    <br><br>
+                    <h2 class="section-heading animated" data-animation="bounceInUp">Indicateur sur le status de client</h2>
+                    <br>
+                </div>
+                
+                    <p>Le nombre des clients total: 
+                        <%  ArrayList<String> indic = bd.indicClientStatu();
+                            out.println(indic.get(2));
+                        %>
+                    </p>
+                    <br><br><br>
+                    <p>Le nombre et le pourcentage des clients validés:
+                        <%
+                            out.println(indic.get(3));
+                            out.println("(" + indic.get(0) + "%)");
+                        %>
+                    </p>
+                    <br><br><br>
+                    <p>Le nombre et le pourcentage des clients en attente:
+                        <%
+                            out.println(indic.get(4));
+                            out.println("(" + indic.get(1) + "%)");
+                        %>
+                    </p>
+                    <br><br><br>
+
+                
+
+
+
+                <section id="parallax1" class="section" data-stellar-background-ratio="0.5">
+                    <div class="container">
+                        <div class="row appear stats">
+                            <!--total-->
+                            <div class="col-md-4">
+                                <div class="align-center color-white txt-shadow">
+                                    <div class="icon">
+                                        <i class="fa fa-coffee fa-5x"></i>
+                                    </div>
+                                    <strong id="counter-coffee" class="number">
+                                        <%
+                                            out.println(indic.get(2));
+                                        %>
+                                    </strong><br>
+                                    <span class="text">Clients total</span>
+                                </div>
+                            </div>
+                            <!--valide-->      
+                            <div class="col-md-4">
+                                <div class="align-center color-white txt-shadow">
+                                    <div class="icon">
+                                        <i class="fa fa-heart fa-5x"></i>
+                                    </div>
+                                    <strong id="counter-heart" class="number">
+                                        <%
+                                            out.println(indic.get(3));
+                                            out.println("(" + indic.get(0) + "%)");
+                                        %>
+                                    </strong><br>
+                                    <span class="text">Clients Validés</span>
+                                </div>
+                            </div>
+                            <!--en attente-->      
+                            <div class="col-md-4">
+                                <div class="align-center color-white txt-shadow">
+                                    <div class="icon">
+                                        <i class="fa fa-clock-o fa-5x"></i>
+                                    </div>
+                                    <strong id="counter-clock" class="number">
+                                        <%
+                                            out.println(indic.get(4));
+                                            out.println("(" + indic.get(1) + "%)");
+                                        %>
+                                    </strong><br>
+                                    <span class="text">Clients en attente</span>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+        </div>
+        <section id="footer" class="section footer">
+            <div class="container">
+                <div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
+                    <div class="col-sm-12 align-center">
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row align-center mar-bot20">
+                    <ul class="footer-menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#testimonials">Apercu</a></li>
+                        <li><a href="#section-contact">Contact</a></li>
+
+                    </ul>
+                </div>
+                <div class="row align-center copyright">
+                    <div class="col-sm-12">
+                        <p>Copyright &copy; All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+                                    
     </body>
 </html>

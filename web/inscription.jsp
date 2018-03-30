@@ -11,13 +11,13 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Accueil Page</title>
+            <title>Inscription Page</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" type="text/css" 
                   href="Vlava/js/rs-plugin/css/settings.css" media="screen">
             <link rel="stylesheet" type="text/css" href="Vlava/css/isotope.css" media="screen">
             <link rel="stylesheet" 
-                  href="flexslider.css" type="text/css">
+                  href="Vlava/css/flexslider.css" type="text/css">
             <link rel="stylesheet" href="Vlava/js/jquery.fancybox.css" type="text/css" 
                   media="screen">
             <link rel="stylesheet" href="Vlava/css/bootstrap.css">
@@ -85,13 +85,13 @@
 
                                 <div class="field your-name form-group">
                                     Nom : (*)
-                                    <input type="text" name="nom" id ="nom" placeholder="Nom" class="cform-text" size="40" required>
+                                    <input type="text" name="Nom" id ="nom" placeholder="Nom" class="cform-text" size="40" required>
                                     <div class="validation"></div>
                                 </div>
 
                                 <div class="field your-name form-group">
                                     Prénom : (*)
-                                    <input type="text" name="prenom" id ="prenom" placeholder="Prénom" class="cform-text" size="40" required>
+                                    <input type="text" name="Prenom" id ="prenom" placeholder="Prénom" class="cform-text" size="40" required>
                                     <div class="validation"></div>
                                 </div>
 
@@ -107,11 +107,11 @@
 
                                 <div class="field your-email form-group">
                                     Adresse Email:
-                                    <input type="email" name="mail1" id="mail1" placeholder="Email" class="cform-text" size="40" data-rule="email" data-msg="aaaa" onkeyup="checkEmail()"required>(*)
+                                    <input type="email" name="mail1" id="mail1" placeholder="Email" class="cform-text" size="40" data-rule="email" data-msg="aaaa" required>(*)
                                 </div>
                                 <div class="field your-email form-group">
                                     Confirmation Email:
-                                    <input type="email" name="mail2" id="mail2" placeholder="Confirmation Email" class="cform-text" size="40" data-rule="email"  onkeyup="checkEmail()"required>(*)
+                                    <input type="email" name="mail2" id="mail2" placeholder="Confirmation Email" class="cform-text" size="40" data-rule="email"  required>(*)
                                 </div>
                                 <div class="field your-name form-group">
                                     Mot de passe:
@@ -125,8 +125,12 @@
                                     </select>(*)
                                 </div>
 
-                                <p><input type="submit"  value="Envoyer" class="btn btn-theme"/>
-                                    <input type="reset" value="Effacer" class="btn btn-theme" /></p>
+
+                                <div>
+                                <input type="submit" onClick="ServletInscriptionUtilisateur()" value="Envoyer" class="btn btn-theme"/>
+                                <input type="reset" value="Effacer" class="btn btn-theme" />
+                                </div>
+
                             </form>
                         </div>
                     </div>
