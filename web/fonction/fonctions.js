@@ -97,4 +97,118 @@ function checkEmail(Formulaires) {
     }
 }
 
+function liste_Client_EnAttente() {
+    requeteXML = new XMLHttpRequest();
+    requeteXML.onreadystatechange = function ()
+    {
+        //Si l'on a tout reçu et que la requête http s'est bien passée.
+        if (requeteXML.readyState === 4 && requeteXML.status === 200) {
+            listeEnAttente = chargerListeClient(requeteXML.responseXML);
 
+            var eltEnAttente = document.getElementById("clientEnAttente");
+            
+            eltEnAttente.innerHTML = listeEnAttente;
+        }
+    };
+    // Requête au serveur avec les paramètres éventuels.
+    requeteXML.open("GET", "ServletListerClientStatut?statut=EN ATTENTE", true);
+    requeteXML.send(null);
+}
+
+function liste_Client_Potentiel() {
+    requeteXML = new XMLHttpRequest();
+    requeteXML.onreadystatechange = function ()
+    {
+        //Si l'on a tout reçu et que la requête http s'est bien passée.
+        if (requeteXML.readyState === 4 && requeteXML.status === 200) {
+            listePotentiel = chargerListeClient(requeteXML.responseXML);
+
+            var eltPotentiel = document.getElementById("clientPotentiel");
+
+            eltPotentiel.innerHTML = listePotentiel;
+        }
+    };
+    // Requête au serveur avec les paramètres éventuels.
+    requeteXML.open("GET", "ServletListerClientStatut?statut=POTENTIEL", true);
+    requeteXML.send(null);
+}
+
+function liste_Client_Abonne() {
+    requeteXML = new XMLHttpRequest();
+    requeteXML.onreadystatechange = function ()
+    {
+        //Si l'on a tout reçu et que la requête http s'est bien passée.
+        if (requeteXML.readyState === 4 && requeteXML.status === 200) {
+            listeAbonne = chargerListeAbonne(requeteXML.responseXML);
+
+            var eltAbonne = document.getElementById("clientValider");
+            eltAbonne.innerHTML = listeAbonne;
+        }
+    };
+    // Requête au serveur avec les paramètres éventuels.
+    requeteXML.open("GET", "ServletListerClientStatut?statut=VALIDE", true);
+    requeteXML.send(null);
+}
+
+function chargerListeClient(listeClientXML) {
+    var i, client, liste, user, utilisateur;
+    
+    liste = liste + "<p><form method = 'get' action = 'adminmodifstatutclient.jsp'> ";
+    liste = "<table border='1'>";
+    liste = liste + "<tr>";
+    liste = liste + "<th> Nom </th>";
+    liste = liste + "<th> Prénom </th>";
+    liste = liste + "<th> Statut </th>";
+    liste = liste + "<th> Date d'inscription </th>";
+    liste = liste + "<th> Modifier </th>";
+    liste = liste + "<tr>";
+    
+    client = listeClientXML.getElementsByTagName("utilisateur");
+    for (i = 0; i < client.length; i++) {
+        user = client[i].firstChild.nodeValue;
+        utilisateur = user.split("|");
+        liste = liste + "<tr>";
+        liste = liste + "<td>" + utilisateur[0] + "</td>";
+        liste = liste + "<td>" + utilisateur[1] + "</td>";
+        liste = liste + "<td>" + utilisateur[2] + "</td>";
+        liste = liste + "<td>" + utilisateur[3] + "</td>";
+        liste = liste + "<td> <input type = 'radio' name ='email' value = '" + 
+            utilisateur[4] + "'> </td>";
+        liste = liste + "</tr>";
+    }
+    liste = liste + "</table>";
+    liste = liste + "<input type = 'submit' value ='Modifier'>";
+    liste = liste + "</form></p>";
+    return liste;
+}
+
+function chargerListeAbonne(listeClientXML) {
+    var i, client, liste, user, utilisateur;
+    
+    //liste = liste + "<p><form method = 'get' action = 'adminsupclient.jsp'> ";
+    liste = "<table border='1'>";
+    liste = liste + "<tr>";
+    liste = liste + "<th> Nom </th>";
+    liste = liste + "<th> Prénom </th>";
+    liste = liste + "<th> Statut </th>";
+    liste = liste + "<th> Date d'inscription </th>";
+    liste = liste + "<th> Supprimer </th>";
+    liste = liste + "<tr>";
+    
+    client = listeClientXML.getElementsByTagName("utilisateur");
+    for (i = 0; i < client.length; i++) {
+        user = client[i].firstChild.nodeValue;
+        utilisateur = user.split("|");
+        liste = liste + "<tr>";
+        liste = liste + "<td>" + utilisateur[0] + "</td>";
+        liste = liste + "<td>" + utilisateur[1] + "</td>";
+        liste = liste + "<td>" + utilisateur[2] + "</td>";
+        liste = liste + "<td>" + utilisateur[3] + "</td>";
+        liste = liste + "<td> <input type = 'radio' name ='email' value = '" + 
+            utilisateur[4] + "'> </td>";
+        liste = liste + "</tr>";
+    }
+    liste = liste + "</table>";
+    
+    return liste;
+}
