@@ -165,6 +165,32 @@ public class Utilisateur {
         this.dateinscri = dateinscri;
         this.mailu = mailu;
     }
+     //POUR USERINFO()    
+      public Utilisateur(String nomu, String prenomu, String mailu, String genreu, Date datenaissanceu, String telu, String statutu) {
+        this.nomu = nomu;
+        this.prenomu = prenomu;
+        this.mailu = mailu;
+
+        this.genreu = genreu;
+        this.datenaissanceu = datenaissanceu;
+        this.telu = telu;
+
+        this.statutu = statutu;
+    }  
+    
+    
+    
+   //userConnect() 
+    public Utilisateur(String nomu, String prenomu, String genreu, Date datenaissanceu, String telu, String typeu) {
+        this.nomu = nomu;
+        this.prenomu = prenomu;
+
+        this.genreu = genreu;
+        this.datenaissanceu = datenaissanceu;
+        this.telu = telu;
+        this.typeu = typeu;
+
+    }
 
     /**
      * Méthode permettant de récupérer le code de l'utilisateur

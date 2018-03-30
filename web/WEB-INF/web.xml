@@ -17,6 +17,10 @@
         <servlet-name>ServletListerClientStatut</servlet-name>
         <servlet-class>servlet.ServletListerClientStatut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modifier</servlet-name>
+        <servlet-class>servlet.modifier</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>verif</servlet-name>
         <url-pattern>/verif</url-pattern>
@@ -28,6 +32,10 @@
     <servlet-mapping>
         <servlet-name>ServletListerClientStatut</servlet-name>
         <url-pattern>/ServletListerClientStatut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modifier</servlet-name>
+        <url-pattern>/modifier</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

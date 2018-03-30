@@ -110,11 +110,31 @@ public class bd {
         //verifier
         while (rs.next()) {
             SimpleDateFormat forma = new SimpleDateFormat("yyyy-mm-dd");
-            lstI.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("MAILU"), rs.getString("GENREU"), rs.getString("DATENAISSANCE"), rs.getString("TELU"), rs.getString("TYPEU")));
+            lstI.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("GENREU"), rs.getString("DATENAISSANCE"), rs.getString("TELU"), rs.getString("TYPEU")));
         }
 
         return lstI;
     }
+    
+        //affihcer les info pour savoir c'est qui est modifié par admin
+    public ArrayList<Utilisateur> userInfo(String email) throws SQLException, ParseException {
+        Statement st;
+        String sql = "SELECT NOMU,PRENOMU,MAILU,GENREU,DATENAISSANCE,TELU,STATUTU, DATEINSCRI FROM UTILISATEUR WHERE MAILU= '" + email + "'";
+        st = cx.createStatement();
+        ResultSet rs = st.executeQuery(sql); //resultat    
+        ArrayList<Utilisateur> lstL = new ArrayList();
+        //verifier
+        while (rs.next()) {
+            System.out.println(rs.getString("STATUTU"));
+
+            SimpleDateFormat forma = new SimpleDateFormat("yyyy-mm-dd");
+            lstL.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("MAILU"), rs.getString("GENREU"), forma.parse(rs.getString("DATENAISSANCE")), rs.getString("TELU"), rs.getString("STATUTU")));
+            System.out.println(lstL.get(0).getStatutu());
+        }
+
+        return lstL;
+    }
+
     
       //PROPORTION STATUS DE CLIENT
     public ArrayList<String> indicClientStatu() throws SQLException {
@@ -154,6 +174,30 @@ public class bd {
       
    return indic;
 
+    }
+    
+        public void ModifierMessage(String mail, String statut, String tel) throws SQLException {
+        try {
+            if(statut.equals("VALIDE")){
+                Date now=new Date();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String dateAuj = dateFormat.format( now ); //date aujourd'hui
+            Statement st4;
+            st4 = cx.createStatement();
+            /*requete SQL*/
+            String sq1 = "update UTILISATEUR set STATUTU='" + statut + "',TELU='" + tel + "',DATEVALID='" + dateAuj + "' Where MAILU='" + mail + "'";
+            int nb1 = st4.executeUpdate(sq1);
+                
+            }else{
+            Statement st3;
+            st3 = cx.createStatement();
+            /*requete SQL*/
+            String sq = "update UTILISATEUR set STATUTU='" + statut + "',TELU='" + tel + "' Where MAILU='" + mail + "'";
+            int nb = st3.executeUpdate(sq);
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur" + ex.getMessage());
+        }
     }
     
     
