@@ -9,6 +9,7 @@ import bd.bd;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,16 +38,34 @@ public class ServletListerClientStatut extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             bd bd = new bd();
+            Date max = null;
             String statut = request.getParameter("statut");
             ArrayList<Utilisateur> listUser = bd.obtenirClientSelonStatut(statut);
+            //Recherche de la dernière date à laquelle un utilisateur s'est inscrit
+            for(Utilisateur user : listUser) {
+                if (max == null) {
+                    max = user.getDateinscri();
+                } else {
+                    if (max.before(user.getDateinscri())) {
+                        max = user.getDateinscri();
+                    }
+                }
+            }
             /*----- Ecriture de la page XML -----*/
             out.println("<?xml version=\"1.0\"?>");
             out.println("<donnees>");
             for (Utilisateur user : listUser) {
-                out.println("<utilisateur>" + user.getNomu() + " | "
+                if(max.equals(user.getDateinscri())) {
+                    out.println("<utilisateur>" + user.getNomu() + " | "
                         + user.getPrenomu() + " | " + user.getStatutu() + " | "
                         + user.getStringDate(user.getDateinscri()) + " | " 
-                        + user.getMailu() + "</utilisateur>");
+                        + user.getMailu() + " |last" + "</utilisateur>");
+                } else {
+                    out.println("<utilisateur>" + user.getNomu() + " | "
+                        + user.getPrenomu() + " | " + user.getStatutu() + " | "
+                        + user.getStringDate(user.getDateinscri()) + " | " 
+                        + user.getMailu() + " |not" + "</utilisateur>");
+                }
             }
             out.println("</donnees>");
         } catch (IOException ex) {
