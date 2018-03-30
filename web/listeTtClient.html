@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type"
+              content="text/html; charset=UTF-8">
+        <title>Liste des clients</title>
+        <link rel="stylesheet" type="text/css" 
+              href="Vlava/js/rs-plugin/css/settings.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="Vlava/css/isotope.css" media="screen">
+        <link rel="stylesheet" 
+              href="flexslider.css" type="text/css">
+        <link rel="stylesheet" href="Vlava/js/jquery.fancybox.css" type="text/css" 
+              media="screen">
+        <link rel="stylesheet" href="Vlava/css/bootstrap.css">
+        <link rel="stylesheet" 
+              href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700">
+        <link rel="stylesheet" href="Vlava/css/style.css">
+        <!-- skin -->
+        <link rel="stylesheet" href="Vlava/css/default.css">
+        <SCRIPT language="JavaScript"  src="script.js"></script>
+        <script type="text/javascript" src="fonction/fonctions.js"><!--comment--></script>
+    </head>
+    <body onload="liste_Client_Abonne()">
+        <h1>Liste des clients en attente de validation</h1>
+        <p onclick="liste_Client_EnAttente()">Afficher client en attente</p>
+        <form method = 'get' action = 'adminmodifstatutclient.jsp'>
+            <div id='clientEnAttente'></div>
+            <input type = 'submit' value ='Supprimer'>
+        </form>
+
+        <h1>Liste des clients potentiels</h1>
+        <p onclick="liste_Client_Potentiel()">Afficher clients potentiel</p>
+        <form method = 'get' action = 'adminmodifstatutclient.jsp'>
+            <div id='clientPotentiel'></div>
+            <input type = 'submit' value ='Supprimer'>
+        </form>
+
+        <h1>Liste des abonnés</h1>
+        <form method = 'get' action = 'adminsupclient.jsp'>
+            <div id='clientValider'></div>
+            <input type = 'submit' value ='Supprimer'>
+        </form>
+    </body>
+</html>

@@ -173,7 +173,7 @@ function chargerListeClient(listeClientXML) {
         liste = liste + "<td>" + utilisateur[2] + "</td>";
         liste = liste + "<td>" + utilisateur[3] + "</td>";
         liste = liste + "<td> <input type = 'radio' name ='email' value = '" + 
-            utilisateur[4] + "'> </td>";
+            utilisateur[4] + "' checked> </td>";
         liste = liste + "</tr>";
     }
     liste = liste + "</table>";
@@ -199,13 +199,17 @@ function chargerListeAbonne(listeClientXML) {
     for (i = 0; i < client.length; i++) {
         user = client[i].firstChild.nodeValue;
         utilisateur = user.split("|");
-        liste = liste + "<tr>";
+        if(utilisateur[5].toString() === "last") {
+            liste = liste + "<tr bgcolor='red'>";
+        } else {
+            liste = liste +"<tr>"
+        }
         liste = liste + "<td>" + utilisateur[0] + "</td>";
         liste = liste + "<td>" + utilisateur[1] + "</td>";
         liste = liste + "<td>" + utilisateur[2] + "</td>";
         liste = liste + "<td>" + utilisateur[3] + "</td>";
         liste = liste + "<td> <input type = 'radio' name ='email' value = '" + 
-            utilisateur[4] + "'> </td>";
+            utilisateur[4] + "' checked> </td>";
         liste = liste + "</tr>";
     }
     liste = liste + "</table>";
