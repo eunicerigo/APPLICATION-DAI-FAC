@@ -68,14 +68,6 @@ function inscrireUtilisateur(){
      
 
     xhr.open("GET", "ServletInscriptionUtilisation?genre=" + genre & "?nom="+ nom & "?prenom=" + prenom  & "?datenaissance=" + date & "?tel="+tel & "?mail1=" + mail1 & "?mdp=" + mdp & "?obj=" + obj);
-//    xhr.open("GET", "ServletInscriptionUtilisateur?nom=" + nom);
-//    xhr.open("GET", "ServletInscriptionUtilisateur?prenom=" + prenom);
-//    xhr.open("GET", "ServletInscriptionUtilisateur?datenaissance=" + datenaissance);
-//    xhr.open("GET", "ServletInscriptionUtilisateur?tel=" + tel);
-//    xhr.open("GET", "ServletInscriptionUtilisateur?mail1=" + mail1);
-//    xhr.open("GET", "ServletInscriptionUtilisateur?mdp=" + mdp);
-//    xhr.open("GET", "ServletInscriptionUtilisateur?obj=" + obj);
-
     requeteXML.send(null);
     
      
@@ -170,8 +162,7 @@ function chargerListeClient(listeClientXML) {
         liste = liste + "</tr>";
     }
     liste = liste + "</table>";
-    liste = liste + "<input  type='submit' name='submit' value ='Modifier' class='btn btn-theme col-lg-3'><br><br>";
-    liste = liste + "</form></p>";
+   
     return liste;
 }
 
@@ -206,4 +197,28 @@ function chargerListeAbonne(listeClientXML) {
     liste = liste + "</table>";
     
     return liste;
+}
+
+
+
+
+function verifMDP( mdp1 ) {
+
+    var i = document.getElementById("ou");
+    i.innerHTML = "blablablablablabla";
+
+    mdp2 = document.getElementById("mdpancien");
+
+    if (mdp1 == mdp2) {
+
+        var elt = document.getElementById("eunice");
+        var elt = document.getElementById("bouton");
+        elt.innerHTML = "mot de passe similaire"
+    } else {
+//.disabled = true
+        var elt = document.getElementById("bouton");
+        elt.innerHTML = "mot de passe pas similaire";
+
+    }
+
 }

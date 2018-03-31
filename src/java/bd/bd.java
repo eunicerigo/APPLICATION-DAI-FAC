@@ -98,11 +98,28 @@ public class bd {
         return id;
 
     }
+    
+    
+    public int ModifierMDP(String codeU, String mdpnouveau) throws SQLException {
+        int x = 0;
+        try {
+           
+            Statement st6;
+            st6 = cx.createStatement();
+            String mdnouveau = "Update UTILISATEUR set MDPU='" + mdpnouveau + "' where CODEU='" + codeU + "'";
+             x = st6.executeUpdate(mdnouveau);
+            
+
+        } catch (SQLException ex) {
+            System.out.println("erreur" + ex.getMessage());
+        }
+        return x;
+    }
 
     //affihcer les info pour savoir c'est qui en train de connecter ArrayList<Utilisateur>
     public ArrayList<Utilisateur> userConnect(int id) throws SQLException, ParseException {
         Statement st;
-        String sql = "SELECT NOMU,PRENOMU,MAILU,GENREU,DATENAISSANCE,TELU,TYPEU FROM UTILISATEUR WHERE CODEU=" + id;
+        String sql = "SELECT NOMU,PRENOMU,MAILU,GENREU,MDPU,DATENAISSANCE,TELU,TYPEU FROM UTILISATEUR WHERE CODEU=" + id;
         st = cx.createStatement();
         ArrayList<Utilisateur> lstI = new ArrayList();
         ResultSet rs = st.executeQuery(sql); //resultat    
@@ -110,7 +127,7 @@ public class bd {
         //verifier
         while (rs.next()) {
             SimpleDateFormat forma = new SimpleDateFormat("yyyy-mm-dd");
-            lstI.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("GENREU"), rs.getString("DATENAISSANCE"), rs.getString("TELU"), rs.getString("TYPEU")));
+            lstI.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("MAILU"), rs.getString("GENREU"),rs.getString("MDPU"), rs.getString("DATENAISSANCE"), rs.getString("TELU"), rs.getString("TYPEU")));
         }
 
         return lstI;
@@ -119,7 +136,7 @@ public class bd {
         //affihcer les info pour savoir c'est qui est modifié par admin
     public ArrayList<Utilisateur> userInfo(String email) throws SQLException, ParseException {
         Statement st;
-        String sql = "SELECT NOMU,PRENOMU,MAILU,GENREU,DATENAISSANCE,TELU,STATUTU, DATEINSCRI FROM UTILISATEUR WHERE MAILU= '" + email + "'";
+        String sql = "SELECT NOMU,PRENOMU,MAILU,MDPU,GENREU,DATENAISSANCE,TELU,STATUTU, DATEINSCRI FROM UTILISATEUR WHERE MAILU= '" + email + "'";
         st = cx.createStatement();
         ResultSet rs = st.executeQuery(sql); //resultat    
         ArrayList<Utilisateur> lstL = new ArrayList();
@@ -128,13 +145,54 @@ public class bd {
             System.out.println(rs.getString("STATUTU"));
 
             SimpleDateFormat forma = new SimpleDateFormat("yyyy-mm-dd");
-            lstL.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("MAILU"), rs.getString("GENREU"), forma.parse(rs.getString("DATENAISSANCE")), rs.getString("TELU"), rs.getString("STATUTU")));
+            lstL.add(new Utilisateur(rs.getString("NOMU"), rs.getString("PRENOMU"), rs.getString("MAILU"),rs.getString("MDPU"), rs.getString("GENREU"), rs.getString("DATENAISSANCE"), rs.getString("TELU"), rs.getString("STATUTU")));
             System.out.println(lstL.get(0).getStatutu());
         }
 
         return lstL;
     }
 
+    
+    public ArrayList<Utilisateur> ConsulterUtilisateur() throws SQLException {
+        String nomu;
+        String prenomu;
+        String mailu;
+        String mdpu;
+        String genreu;
+        String datenaissance;
+        String telu;
+        String typeu;
+        Date dateinscri;
+        String statutu;
+        Statement st;
+        ResultSet rs;
+
+        String sql = "select NOMU, PRENOMU, MAILU, MDPU,GENREU, DATENAISSANCE, TELU, TYPEU, DATEINSCRI, STATUTU from UTILISATEUR;";
+        st = cx.createStatement();
+        ArrayList<Utilisateur> liste = new ArrayList<>();
+
+        try {
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                nomu = rs.getString("NOMU");
+                prenomu = rs.getString("PRENOMU");
+                mailu = rs.getString("MAILU");
+                mdpu = rs.getString("MDPU");
+                genreu = rs.getString("GENREU");
+                datenaissance = rs.getString("DATENAISSANCE");
+                telu = rs.getString("TELU");
+                typeu = rs.getString("TYPEU");
+                dateinscri = rs.getDate("DATEINSCRI");
+                statutu = rs.getString("STATUTU");
+
+                liste.add(new Utilisateur(nomu, prenomu, mailu, mdpu, genreu, datenaissance, telu, typeu, dateinscri, statutu));
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur" + ex.getMessage());
+        }
+        return liste;
+    }
     
       //PROPORTION STATUS DE CLIENT
     public ArrayList<String> indicClientStatu() throws SQLException {
@@ -199,7 +257,51 @@ public class bd {
             System.out.println("erreur" + ex.getMessage());
         }
     }
-    
+        
+    public int modifUtilisateur(int codeu, String genre, String nom, String prenom,
+            String datenaissance, String tel, String mail) {
+       
+        Statement st = null;
+        try {
+            //Espace d'exécution de la requête
+            st = cx.createStatement();
+        } catch (SQLException ex) {
+            System.out.println("Echec lors de la création de l'espace d'exécution " + ex.getMessage());
+        }
+
+        //Requête SQL
+        String inscrirebase = "UPDATE UTILISATEUR " 
+                + "SET  NOMU = '" +nom+ "', PRENOMU = '" +prenom+ "', MAILU='" + mail + "',  GENREU ='" +genre+ "',"
+                + " TELU = '" + tel + "', DATENAISSANCE = '" +datenaissance+ "' "
+                + " WHERE UTILISATEUR.CODEU= ' "+ codeu +"' ;"   ;
+          
+                
+               
+        int nb_ligne_modifie = 0;
+        
+        try {
+            //Ouverture de l'espace de requête
+            nb_ligne_modifie = st.executeUpdate(inscrirebase);
+        } catch (SQLException ex) {
+            System.out.println("Echec lors de la modification de l'utilisateur " + ex.getMessage());
+        }
+
+        //Fermeture de l'espace d'exécution de la requête
+        try {
+            st.close();
+        } catch (SQLException ex) {
+            System.out.println("Echec lors de la fermeture de l'espace d'exécution de la requête " + ex.getMessage());
+        }
+
+        //Fermeture de la connexion à la base de données
+        try {
+            cx.close();
+        } catch (SQLException ex) {
+            System.out.println("Echec lors de la fermeture de la connexion à la base de données " + ex.getMessage());
+        }
+        return nb_ligne_modifie;
+
+    }
     
     //Methode de récuperration des utilisateurs
     public ArrayList<Utilisateur> obtenirutilisateurs() {
@@ -516,7 +618,10 @@ public class bd {
         unebd.verifLogin("EVABAIBAI@GMAIL.COM", "123123asd");
         
         
+         int i = unebd.modifUtilisateur(20, "F", "thibaut" , "prenom", "09-09-2001", "9999999999", "caca@gmail.com");
         
+        
+        System.out.println(i);
         
      
         

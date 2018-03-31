@@ -93,7 +93,7 @@ public class Utilisateur {
         this.mesurer = new HashMap();
     }
 
-    public Utilisateur(String nomu, String prenomu, String mailu, String genreu, String datenaissanceu, String telu, String typeu) {
+    public Utilisateur(String nomu, String prenomu, String mailu, String genreu,String mdpu, String datenaissanceu, String telu, String typeu) {
         this.nomu = nomu;
         this.prenomu = prenomu;
         this.mailu = mailu;
@@ -101,6 +101,7 @@ public class Utilisateur {
         this.datenaissanceu = datenaissanceu;
         this.telu = telu;
         this.typeu = typeu;
+        this.mdpu = mdpu ;
 
     }
 
@@ -166,22 +167,22 @@ public class Utilisateur {
         this.mailu = mailu;
     }
      //POUR USERINFO()    
-      public Utilisateur(String nomu, String prenomu, String mailu, String genreu, Date datenaissanceu, String telu, String statutu) {
-        this.nomu = nomu;
-        this.prenomu = prenomu;
-        this.mailu = mailu;
-
-        this.genreu = genreu;
-        this.datenaissanceu = datenaissanceu;
-        this.telu = telu;
-
-        this.statutu = statutu;
-    }  
+//      public Utilisateur(String nomu, String prenomu, String mailu, String genreu, String datenaissanceu, String telu, String statutu) {
+//        this.nomu = nomu;
+//        this.prenomu = prenomu;
+//        this.mailu = mailu;
+//
+//        this.genreu = genreu;
+//        this.datenaissanceu = datenaissanceu;
+//        this.telu = telu;
+//
+//        this.statutu = statutu;
+//    }  
     
     
     
    //userConnect() 
-    public Utilisateur(String nomu, String prenomu, String genreu, Date datenaissanceu, String telu, String typeu) {
+    public Utilisateur(String nomu, String prenomu, String genreu, String datenaissanceu, String telu, String typeu) {
         this.nomu = nomu;
         this.prenomu = prenomu;
 

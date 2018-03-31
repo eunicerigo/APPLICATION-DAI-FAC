@@ -77,13 +77,18 @@
                 <div class="row mar-bot40">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-5">
-                        <a href=""><h3 class="text-bold">Visualiser la liste des clients</h3></a>
+                        <a href="listeTtClient.html"><h3 class="text-bold">Visualiser la liste des clients</h3></a>
                         <p>Vous pouvez visualiser tous les clients ici.</p>
                         <div class="clear"></div>
                     </div>
                     <div class="col-lg-5">
                         <a href="visualiserIndic.jsp"><h3 class="text-bold">Visualiser les indicateurs sur client</h3></a>
                         <p>Vous pouvez visualiser les indicateurs concernant les clients ici.</p>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="col-lg-5">
+                        <a href="insciptionAdmin.jsp"><h3 class="text-bold">Inscrire rapidement un client </h3></a>
+                        <p> ECRIRE UN TRUC ICI </p>
                         <div class="clear"></div>
                     </div>
                     

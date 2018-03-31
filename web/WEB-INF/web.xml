@@ -21,6 +21,14 @@
         <servlet-name>modifier</servlet-name>
         <servlet-class>servlet.modifier</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletModifProfilBase</servlet-name>
+        <servlet-class>servlet.ServletModifProfilBase</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servletmdp</servlet-name>
+        <servlet-class>servlet.servletmdp</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>verif</servlet-name>
         <url-pattern>/verif</url-pattern>
@@ -36,6 +44,14 @@
     <servlet-mapping>
         <servlet-name>modifier</servlet-name>
         <url-pattern>/modifier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletModifProfilBase</servlet-name>
+        <url-pattern>/ServletModifProfilBase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servletmdp</servlet-name>
+        <url-pattern>/servletmdp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

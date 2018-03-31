@@ -59,7 +59,8 @@
         <section id="intro">
             <div class="intro-content">
                 <h2>JEAN DAVID COACHING</h2>
-                <h3>Bienvenue!</h3>
+                <h3>Bienvenue!!!!!!!!
+                </h3>
                 <div>
                     <a href="connection.html" class="btn-get-started scrollto">LOG IN</a>
                     <a href="inscription.jsp" class="btn-get-started scrollto">INSCRIRE</a>

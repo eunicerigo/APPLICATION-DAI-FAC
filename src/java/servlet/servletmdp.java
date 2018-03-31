@@ -8,6 +8,7 @@ package servlet;
 import bd.bd;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,13 +19,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import metier.Utilisateur;
 
 /**
  *
- * @author evaba
+ * @author 21104333
  */
-@WebServlet(name = "verif", urlPatterns = {"/verif"})
-public class verif extends HttpServlet {
+@WebServlet(name = "servletmdp", urlPatterns = {"/servletmdp"})
+public class servletmdp extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,51 +40,43 @@ public class verif extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
-            /* TODO output your page here. You may use following sample code. */
-            RequestDispatcher rd = null;
-            //GET Utilisateur
-            String email = request.getParameter("txtemail");
-            String mdp = request.getParameter("txtmdp");
-            bd unebd = new bd();
-            int rs = unebd.verifLogin(email, mdp);
-            String ida = String.valueOf(unebd.idUser(email, mdp));
-            //out.println("alert(ida);window.location='connection.html'");
-            //verifier
-            //COACH
-            if (rs == 1) {
-                // out.println("coach Login succes!!!");
-                HttpSession session = request.getSession(true);
-                session.setAttribute("id", ida);
-                rd = request.getRequestDispatcher("index.jsp");// il faut changer adresse
-
-                rd.forward(request, response);
-            } //CLIENT
-            else if (rs == 2) {
-                //     out.println(" client Login sucess!!!");
-                HttpSession session = request.getSession(true);
-                session.setAttribute("id", ida);
-                rd = request.getRequestDispatcher("pageClient.jsp");// il faut changer adresse
-                rd.forward(request, response);
-            } //ADMIN
-            else if (rs == 3) {
-                //  out.println(" admin Login sucess!!!");
-                //request.setAttribute("id", ida);
-                HttpSession session = request.getSession(true);
-                session.setAttribute("id", ida);
-                rd = request.getRequestDispatcher("/pageadmin.jsp");// il faut changer adresse
-                rd.forward(request, response);
-            } else //ko
-            {
-                out.println("<script LANGUAGE='JavaScript'>");
-                out.println("alert('Adresse mail ou mot de passe pas correct!!!');window.location='connection.html'");
-                out.println("</script>");
-
-            }
-
-            //  rd.forward(request, response);
+        
+        RequestDispatcher rd = null;
+        HttpSession session = request.getSession(true);
+        
+        //String genre = request.getParameter("genre");
+        String ida = (String) session.getAttribute("id");
+        
+        out.println(ida);
+        
+         String mdpancien= request.getParameter("mdpancien");
+         String mdpnouveau=request.getParameter("mdpnouveau");
+      
+        
+        bd newbd = new bd();
+        
+        int x = newbd.ModifierMDP(ida,mdpnouveau);
+        
+        if(x == 0){
+            out.print("<script LANGAGE = 'JavaScript'>");
+            out.print("alert('erreur de modification mot de passe');window.location='modifiermdptoclient.jsp'");
+            out.println("</script>");
+            
+            
+            
+            rd = request.getRequestDispatcher("modifiermdptoclient.jsp");
+                    rd.forward(request, response);
+        }else{
+            
+            out.print("<script LANGAGE = 'JavaScript'>");
+            out.print("alert('Mot de passe bien modifier ! Votre nouveau mot de passe est : "+ mdpnouveau +"');window.location='pageClient.jsp'");
+            out.println("</script>");
+            
+            rd = request.getRequestDispatcher("pageClient.jsp");
+                    rd.forward(request, response);
+            
         }
+   
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -100,7 +94,7 @@ public class verif extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(verif.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(servletmdp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -118,7 +112,7 @@ public class verif extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(verif.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(servletmdp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
