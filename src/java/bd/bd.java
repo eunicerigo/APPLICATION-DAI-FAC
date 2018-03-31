@@ -496,6 +496,24 @@ public class bd {
         }
         return listeUtilisateur;
     }
+    
+        public String Envoyer(String mail) throws SQLException {
+        String mdp = null;
+        try {
+            Statement st5;
+            st5 = cx.createStatement();
+            String recherche = "SELECT MDPU FROM `UTILISATEUR` WHERE MAILU = '" + mail + "'";
+            ResultSet rs = st5.executeQuery(recherche);
+            while (rs.next()) {
+                
+             mdp = rs.getString("MDPU");
+                System.out.println(mdp);
+            }
+        } catch (SQLException ex) {
+            System.out.println("erreur" + ex.getMessage());
+        }
+       return mdp;
+    }
 
     //Programme de test de la connexion à la bd
     public static void main(String[] args) throws SQLException {
