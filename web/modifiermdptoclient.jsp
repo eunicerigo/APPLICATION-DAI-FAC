@@ -24,7 +24,7 @@
         
         <form action="servletmdp" method="post">
               <p>Bonjour, cher client:</p>
-            <p>Entrez votre ancien mot de passe pour modifier:</p>
+            <p>Entrez votre ancien mot de passe:</p>
  
          <%
         String ida = (String) session.getAttribute("id");
